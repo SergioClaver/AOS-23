@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   version: 1.0.0
-  title: Gestión de Clientes
+  title: 👨🏼‍✈️ Gestión de Clientes 👩🏼‍✈️
   description: >
     API Rest para la gestión de clientes de un taller de mecánica
   contact:
