@@ -1,0 +1,24 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: 👨🏼‍✈️ Gestión de Clientes 👩🏼‍✈️
+  description: >
+    API Rest para la gestión de clientes de un taller de mecánica
+  contact:
+    name: Grupo 10 
+    url: 'https://moodle.upm.es/titulaciones/oficiales/mod/assign/view.php?id=95193'
+    email: franciscojavier.gil@upm.es
+
+servers:
+  - url: http://127.0.0.1:80/api/v1
+
+tags:
+  - name: 'Cliente'
+    description: Cliente
+
+paths:
+  $ref: 'paths.yaml#/paths'
+
+components:
+  $ref: 'components.yaml#/components'
