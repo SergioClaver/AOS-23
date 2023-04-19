@@ -1,25 +1,32 @@
-version: "3.3"
+version: "3"
+
 services:
+    backend:
+        image: stoplight/prism:4
+        container_name: ClientesMock
+        command: mock --cors -h 0.0.0.0 "/aos/openapi.yaml"
+        ports:
+          - "4010:4010"
+        volumes:
+            - ./openapi:/aos:ro
 
-   # mock_backend:
-   #    image: stoplight/prism:4
-   #    container_name: mount-b-mock
-   #    command: mock --cors -h 0.0.0.0 "/mount/openapi.yaml"
-   #    ports:
-   #       - "4010:4010"
-   #    volumes:
-   #       - ./openapi:/mount:ro
+    frontend:
+        image: swaggerapi/swagger-ui:latest
+        container_name: ClientesUi
+        ports:
+            - "8000:8080"
+        environment:
+            SWAGGER_JSON: /aos/openapi.yaml
+        volumes:
+            - ./openapi:/aos:ro
 
-   swagger-ui:
-      image: swaggerapi/swagger-ui
-      
-      container_name: "swagger-ui"
-      ports:
-        - "8082:8080"
-      volumes:
-       -  ./openapi:/usr/share/nginx/html/docs
-       - ./openapi:/docs
-         
-      environment:
-         SWAGGER_JSON: /docs/openapi.yaml 
-      
+    proxy:
+        image: caddy:latest
+        container_name: ClientesProxy
+        volumes:
+            - ./Caddyfile:/etc/caddy/Caddyfile
+            - ./caddy_data:/data
+        ports:
+            - "80:80"
+        depends_on:
+            - backend
