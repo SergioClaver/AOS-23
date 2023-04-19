@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+
+   # mock_backend:
+   #    image: stoplight/prism:4
+   #    container_name: mount-b-mock
+   #    command: mock --cors -h 0.0.0.0 "/mount/openapi.yaml"
+   #    ports:
+   #       - "4010:4010"
+   #    volumes:
+   #       - ./openapi:/mount:ro
+
+   swagger-ui:
+      image: swaggerapi/swagger-ui
+      
+      container_name: "swagger-ui"
+      ports:
+        - "8082:8080"
+      volumes:
+       -  ./openapi:/usr/share/nginx/html/docs
+       - ./openapi:/docs
+         
+      environment:
+         SWAGGER_JSON: /docs/openapi.yaml 
+      
