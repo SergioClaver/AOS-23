@@ -39,6 +39,10 @@ components:
       $ref: 'schemas.yaml#/Direccion_Cliente'
     CuentaBancaria_Cliente:
       $ref: 'schemas.yaml#/CuentaBancaria_Cliente'
+    Telefono: 
+      $ref: 'schemas.yaml#/Telefono'
+    Mail: 
+      $ref: 'schemas.yaml#/Mail'
     HTTP_Problem:
       $ref: 'schemas.yaml#/HTTP_Problem'
     Link:
