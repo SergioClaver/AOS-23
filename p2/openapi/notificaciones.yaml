@@ -393,24 +393,6 @@ components:
       example:
         href: https://www.example.com/path/resource
         rel: relAction1 relAction2   
-
-    AllNotificaciones:
-      type: object
-      properties:
-        Notificacion:
-          $ref: '#/components/schemas/Notificacion'
-        id_notificacion:
-          $ref: '#/components/schemas/Id_Notificacion'
-        id_trabajo:
-          $ref: '#/components/schemas/Id_Trabajo'
-        estado:
-          $ref: '#/components/schemas/Estados_Trabajos'
-        fecha_emision:
-          $ref: '#/components/schemas/Fecha_Emision'
-        HTTP_Problem:
-          $ref: '#/components/schemas/HTTP_Problem'
-        Link:
-          $ref: '#/components/schemas/Link'
         
 
   headers:

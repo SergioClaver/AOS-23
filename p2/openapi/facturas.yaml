@@ -208,9 +208,13 @@ paths:
           $ref: '#/components/responses/Response_412'
         '422':
           $ref: '#/components/responses/Response_422'
-
+  
+   
+      
+      
 components:
   schemas:
+  
     Link:
       description: Enlace de relación
       title: '🔗 Link'
@@ -229,6 +233,8 @@ components:
       example:
         href: https://www.tallermecanico.com/api/v1/facturas
         rel: relation
+    
+    
     
     #Aqui encontramos el esquema para la factura
     Factura:
@@ -414,32 +420,8 @@ components:
           description: >
             A URI reference that identifies the specific occurrence of the problem.
             It may or may not yield further information if dereferenced.
-
-    AllFacturas:    
-      type: object
-      properties:
-        Factura:
-          $ref: '#/components/schemas/Factura'
-        id_factura:
-          $ref: '#/components/schemas/id_factura'
-        estado:
-            $ref: '#/components/schemas/estado'
-        VIN_coche:
-          $ref: '#/components/schemas/VIN_coche'
-        Id_cliente:
-          $ref: '#/components/schemas/Id_cliente'
-        id_trabajo:
-          $ref: '#/components/schemas/id_trabajo'
-        trabajos:
-          $ref: '#/components/schemas/trabajos'
-        importe_total:
-          $ref: '#/components/schemas/importe_total'
-        fecha_factura:
-          $ref: '#/components/schemas/fecha_factura'
-        Link:
-          $ref: '#/components/schemas/Link'
-        HTTP_Problem:
-           $ref: '#/components/schemas/HTTP_Problem'
+            
+    
     
     
   responses:
