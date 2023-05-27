@@ -190,7 +190,7 @@ components:
         descripcion:
           $ref: './recambios/schemas/Descripcion_Recambio.yaml'
         proveedor:
-          $ref: './recambios/schemas//Proveedor_Recambio.yaml'
+          $ref: './recambios/schemas/Proveedor_Recambio.yaml'
         equivalencias:
           $ref: './recambios/schemas/Equivalencias_Recambio.yaml'
         garantia:
@@ -204,7 +204,7 @@ components:
         cantidad: 
           $ref: './recambios/schemas/Cantidad_Recambio.yaml'
         HTTP_Problem:
-          $ref: './recambios/schemas/HTTP_Problem.yaml'
+          $ref: './recambios/schemas/Http_Problem.yaml'
         Link:
           $ref: './recambios/schemas/Link.yaml'
 
