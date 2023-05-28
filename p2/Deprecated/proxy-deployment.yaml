@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: proxy
+  name: proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: proxy
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yaml
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/p2-default: "true"
+        io.kompose.service: proxy
+    spec:
+      containers:
+        - image: caddy:latest
+          name: clientesproxy
+          ports:
+            - containerPort: 80
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/caddy/Caddyfile
+              name: proxy-claim0
+            - mountPath: /data
+              name: proxy-claim1
+      restartPolicy: Always
+      volumes:
+        - name: proxy-claim0
+          persistentVolumeClaim:
+            claimName: proxy-claim0
+        - name: proxy-claim1
+          persistentVolumeClaim:
+            claimName: proxy-claim1
+status: {}
