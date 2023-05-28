@@ -1,0 +1,84 @@
+version: "3"
+
+services:
+
+  Clientes:
+    image: stoplight/prism:latest
+    container_name: Clientes_mock
+    command: mock --cors -h 0.0.0.0 "/aos/clientes/openapi.yaml"
+    volumes:
+      - ./openapi:/aos:ro
+    ports:
+      - 8000:4010  # Map container port 4010 to host port 8000
+
+  Vehiculos:
+    image: stoplight/prism:latest
+    container_name: Vehiculos_mock
+    command: mock --cors -h 0.0.0.0 "/aos/vehiculos.yaml"
+    volumes:
+      - ./openapi:/aos:ro
+    ports:
+      - 8010:4010  # Map container port 4011 to host port 8001
+
+  Trabajos:
+    image: stoplight/prism:latest
+    container_name: Trabajos_mock
+    command: mock --cors -h 0.0.0.0 "/aos/trabajos.yaml"
+    volumes:
+      - ./openapi:/aos:ro
+    ports:
+      - 8020:4010  # Map container port 4012 to host port 8002
+
+  Recambios:
+    image: stoplight/prism:latest
+    container_name: Recambios_mock
+    command: mock --cors -h 0.0.0.0 "/aos/recambios/openapi.yaml"
+    volumes:
+      - ./openapi:/aos:ro
+    ports:
+      - 8030:4010  # Map container port 4013 to host port 8003
+
+  Facturas:
+    image: stoplight/prism:latest
+    container_name: Facturas_mock
+    command: mock --cors -h 0.0.0.0 "/aos/facturas.yaml"
+    volumes:
+      - ./openapi:/aos:ro
+    ports:
+      - 8040:4010  # Map container port 4014 to host port 8004
+
+  Notificaciones:
+    image: stoplight/prism:latest
+    container_name: Notificaciones_mock
+    command: mock --cors -h 0.0.0.0 "/aos/notificaciones.yaml"
+    volumes:
+      - ./openapi:/aos:ro
+    ports:
+      - 8050:4010  # Map container port 4015 to host port 8005
+
+  Logs:
+    image: stoplight/prism:latest
+    container_name: Logs_mock
+    command: mock --cors -h 0.0.0.0 "/aos/logs.yaml"
+    volumes:
+      - ./openapi:/aos:ro
+    ports:
+      - 8060:4010  # Map container port 4016 to host port 8006
+
+  swagger_ui:
+    image: swaggerapi/swagger-ui:latest
+    volumes:
+      - ./openapi:/aos:ro
+      - ./openapi:/usr/share/nginx/html/aos/:ro
+    environment:
+      URLS: "[
+              { url: \"/aos/clientes/openapi.yaml\", name: \"ClientesManagement\" },
+              { url: \"/aos/vehiculos.yaml\", name: \"VehiculosManagement\" },
+              { url: \"/aos/trabajos.yaml\", name: \"TrabajosManagement\" },
+              { url: \"/aos/recambios/openapi.yaml\", name: \"RecambiosManagement\" },
+              { url: \"/aos/facturas.yaml\", name: \"FacturasManagement\" },
+              { url: \"/aos/notificaciones.yaml\", name: \"NotificationsManagement\" },
+              { url: \"/aos/logs.yaml\", name: \"LogsManagement\" }
+             ]"
+    ports:
+      - 8080:8080  # Map container port 8080 to host port 8080
